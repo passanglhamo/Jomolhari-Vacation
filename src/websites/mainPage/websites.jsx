@@ -7,6 +7,9 @@ const websites = () => {
       <Typography>
        Hey! Lets start
       </Typography>
+      <Typography>
+       Hey!
+      </Typography>
     
     </>
   );
