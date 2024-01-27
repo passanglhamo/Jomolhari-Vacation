@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "./theme.js";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import * as React from "react";
+import WebsitesMainPage from "./websites/mainPage/websites";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 function App() {
+  const [theme, colorMode] = useMode();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <CssBaseline />
+          <Routes>
+            <Route exact path="/" element={<WebsitesMainPage />} />
+            {/* <Route
+              path="/authenticatedViewWrapper/*"
+              element={<AuthenticatedViewWrapper />}
+            /> */}
+            <Route path="/websites" element={<WebsitesMainPage />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 
